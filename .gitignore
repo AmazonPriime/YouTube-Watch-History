@@ -1,0 +1,6 @@
+# PYTHON
+*.pyc
+__pycache__
+
+# OTHER
+*.html
