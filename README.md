@@ -10,6 +10,7 @@ Returns information about your watch history in more readable/manageable CSV fil
 
 #### Usage:
 * Download ```main.py``` and move your ```watch-history.html``` to the same directory as it.
-* Install BS4 (BeautifulSoup): ```pip3 install beautifulsoup4```.
+* Install the modules from ```requirements.txt```: ```pip3 install -r requirements.txt```.
+  * Will install the [selectolax](https://github.com/rushter/selectolax) module used for parsing HTML.
 * Run the code with, filename is a required argument ```python3 main.py [-h] <filename>```.
 * Once the program is finished there will be an file called ```output.csv``` containing the scraped data.
