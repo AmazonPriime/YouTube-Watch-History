@@ -2,5 +2,10 @@
 *.pyc
 __pycache__
 
+# VIRTUALENV
+env/
+
 # OTHER
 *.html
+*.txt
+selectolax/
