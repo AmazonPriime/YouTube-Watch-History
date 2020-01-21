@@ -9,3 +9,4 @@ env/
 *.html
 selectolax/
 output.csv
+config.py

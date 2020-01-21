@@ -2,6 +2,7 @@ import os, argparse, re, csv
 from selectolax.parser import HTMLParser
 from datetime import datetime
 
+
 # setup argument parser
 parser = argparse.ArgumentParser()
 parser.add_argument("filename", help = "Name of the html file containing YT history. (including .html extension)", type = str)
@@ -48,5 +49,3 @@ for node in HTMLParser(data).css(selector):
 with open("output.csv", "w") as file:
     writer = csv.writer(file)
     writer.writerows(videos)
-
-print(videos[-1])
