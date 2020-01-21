@@ -1,5 +1,6 @@
 import os, argparse, re, csv
 from selectolax.parser import HTMLParser
+from datetime import datetime
 
 # setup argument parser
 parser = argparse.ArgumentParser()
@@ -38,8 +39,8 @@ for node in HTMLParser(data).css(selector):
         re_result = re.findall("<a.*?>(.*?)<\/a>", node.html)
         re_url = re.findall("href=\"(https:\/\/www\.youtube\.com\/watch.*?)\">", node.html)
         if len(re_result) == 2 and len(re_url) == 1:
-            title, author = re_result[0], re_result[1]
-            timestamp, url = node.last_child.html, re_url[0]
+            title, author, url = re_result[0], re_result[1], re_url[0]
+            timestamp = datetime.strptime(node.last_child.html, '%d %b %Y, %H:%M:%S %Z').timestamp()
             videos.append([title, author, timestamp, url])
 
 
@@ -47,3 +48,5 @@ for node in HTMLParser(data).css(selector):
 with open("output.csv", "w") as file:
     writer = csv.writer(file)
     writer.writerows(videos)
+
+print(videos[-1])
