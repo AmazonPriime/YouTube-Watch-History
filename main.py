@@ -1,7 +1,5 @@
-import os, argparse, time, sys, re
+import os, argparse, re, csv
 from selectolax.parser import HTMLParser
-
-start = time.time()
 
 # setup argument parser
 parser = argparse.ArgumentParser()
@@ -32,17 +30,20 @@ except:
     exit(1)
 
 
-#
+# parse the html grabbing the title, author, url and timestamp from videos available on YouTube storing them in a 2D array
+videos = []
 selector = "div.content-cell.mdl-typography--body-1"
 for node in HTMLParser(data).css(selector):
     if node.text(strip = True) != "":
         re_result = re.findall("<a.*?>(.*?)<\/a>", node.html)
         re_url = re.findall("href=\"(https:\/\/www\.youtube\.com\/watch.*?)\">", node.html)
         if len(re_result) == 2 and len(re_url) == 1:
-            print("Title: %s" % re_result[0])
-            print("Author: %s" % re_result[1])
-            print("URL: %s" % re_url[0])
-            if node.last_child:
-                print("Date: %s\n" % node.last_child.html)
+            title, author = re_result[0], re_result[1]
+            timestamp, url = node.last_child.html, re_url[0]
+            videos.append([title, author, timestamp, url])
 
-print("Time taken: {}s".format(time.time() - start))
+
+# store the 2D array containing videos into a CSV file called 'output.csv'
+with open("output.csv", "w") as file:
+    writer = csv.writer(file)
+    writer.writerows(videos)

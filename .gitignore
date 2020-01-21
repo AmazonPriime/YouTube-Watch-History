@@ -7,5 +7,5 @@ env/
 
 # OTHER
 *.html
-*.txt
 selectolax/
+output.csv
