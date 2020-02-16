@@ -1,5 +1,6 @@
 import requests, json, datetime, re
 from datetime import datetime
+from pprint import pprint
 
 time_to_seconds = {"H": 60*60, "M": 60, "S": 1}
 
@@ -12,13 +13,13 @@ def get_duration(url, id):
         time_values = re.findall("\d*[H|M|S]", duration)
         return sum([time_to_seconds[time[-1]] * int(time[:len(time) - 1]) for time in time_values])
     except:
-        return 0
+        return -1
 
 
 def check_videos(time, videos):
     time = get_time(time)
-    for video in videos:
-        if time in video:
+    for video in videos[1:]:
+        if str(time) in video:
             return False
     return True
 

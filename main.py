@@ -60,12 +60,12 @@ for video in data:
             id = re.findall("watch\?v=(.*)", video['titleUrl'])[0]
             time = get_time(video['time'])
             duration = get_duration(url, id)
-            if duration == 0:
+            if duration == -1:
                 print("Daily API call limit has been reached, this will reset at midnight of your local time.")
                 print("Saving the data that has been scraped already.")
                 break
             videos.append([title, author, author_url, time, duration, id])
-        print("+ " + title)
+            print("+ " + title)
 
 
 
