@@ -64,6 +64,8 @@ for video in data:
                 print("Daily API call limit has been reached, this will reset at midnight of your local time.")
                 print("Saving the data that has been scraped already.")
                 break
+            elif duration == -2:
+                continue
             videos.append([title, author, author_url, time, duration, id])
             print("+ " + title)
 

@@ -9,6 +9,7 @@ def get_duration(url, id):
         url = url.replace("{id}", id)
         response = requests.get(url)
         data = json.loads(response.text)
+        if len(data['items']) == 0: return -2
         duration = data['items'][0]['contentDetails']['duration']
         time_values = re.findall("\d*[H|M|S]", duration)
         return sum([time_to_seconds[time[-1]] * int(time[:len(time) - 1]) for time in time_values])
