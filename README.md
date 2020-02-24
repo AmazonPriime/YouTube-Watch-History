@@ -1,6 +1,7 @@
 ## YouTube Watch History
 
-Returns information about your watch history in more readable/manageable CSV file from the JSON provided in Google Takeout.
+Returns information about your watch history in more readable/manageable CSV file from the JSON provided in Google Takeout. <br>
+I've included a simple Python script to generate a pie chart showing which channel you watch the most.
 
 #### Google Takeout:
 * Go to [Takeout](https://takeout.google.com/) and login to your Google/YouTube account.
